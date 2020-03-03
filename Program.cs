@@ -33,7 +33,7 @@ class TramsAPIDemo
                     },
                     { InvoiceSearch.Param_InvoiceGroup, "UCLA" },
                     {
-                        BaseSearchDataset.Param_IncludeCols,
+                        InvoiceSearch.Param_IncludeCols,
                         new JArray(InvoiceSearch.Col_Invoice_InvoiceNo)
                     }
                 }
@@ -71,7 +71,7 @@ class TramsAPIDemo
                     { ProfileSearch.Param_CommType, Profile.CommType_Email},
                     { ProfileSearch.Param_CommValue, "danpalley@gmail.com"},
                     {
-                        BaseSearchDataset.Param_IncludeCols,
+                        ProfileSearch.Param_IncludeCols,
                         new JArray(ProfileSearch.Col_ProfileNo)
                     }
                 }
@@ -169,20 +169,20 @@ class TramsAPIDemo
         await resCard.Prepare().ConfigureAwait(false);
 
         resCard.ResCardRow[ResCard.Field_ResCard_CreateDate] = DateTime.Today;
-        resCard.ResCardRow[ResCard.Field_ResCard_Profile_Linkno] = 4;
+        resCard.ResCardRow[ResCard.Field_ResCard_Profile_LinkNo] = 4;
         resCard.AddRow(resCard.ResCardRow);
 
-        resCard.ReservationRow[ResCard.Field_Reservation_Vendor_LinkNo] = 66;
-        resCard.ReservationRow[ResCard.Field_Reservation_TravelCategory_LinkNo] = 1;
-        resCard.AddRow(resCard.ReservationRow);
+        resCard.ResvtnRow[ResCard.Field_Resvtn_Vendor_LinkNo] = 66;
+        resCard.ResvtnRow[ResCard.Field_Resvtn_TravelCategory_LinkNo] = 1;
+        resCard.AddRow(resCard.ResvtnRow);
 
-        resCard.ResCardPassengerRow[ResCard.Field_ResCardPassenger_Passenger_LinkNo] = 2;
-        resCard.ResCardPassengerRow[ResCard.Field_ResCardPassenger_PassName] = "Sharp/Fred";
-        resCard.ResCardPassengerRow[ResCard.Field_ResCardPassenger_PassLastName] = "Sharp";
-        resCard.ResCardPassengerRow[ResCard.Field_ResCardPassenger_PassFirstName] = "Fred";
-        resCard.ResCardPassengerRow[ResCard.Field_ResCardPassenger_PassType] = "Adult";
-        resCard.ResCardPassengerRow[ResCard.Field_ResCardPassenger_PrimaryPassenger] = "Y";
-        resCard.AddRow(resCard.ResCardPassengerRow);
+        resCard.ResPassRow[ResCard.Field_ResPass_Passenger_LinkNo] = 2;
+        resCard.ResPassRow[ResCard.Field_ResPass_PassName] = "Sharp/Fred";
+        resCard.ResPassRow[ResCard.Field_ResPass_PassLastName] = "Sharp";
+        resCard.ResPassRow[ResCard.Field_ResPass_PassFirstName] = "Fred";
+        resCard.ResPassRow[ResCard.Field_ResPass_PassType] = "Adult";
+        resCard.ResPassRow[ResCard.Field_ResPass_PrimaryPassenger] = "Y";
+        resCard.AddRow(resCard.ResPassRow);
 
         Console.WriteLine("Saving ResCard... ");
         await resCard.Save().ConfigureAwait(false);
@@ -193,7 +193,7 @@ class TramsAPIDemo
             new JObject
                 {
                     {
-                        BaseSearchDataset.Param_IncludeCols,
+                        ActivitySearch.Param_IncludeCols,
                         new JArray(
                             ActivitySearch.Col_ActivityNo
                         )
